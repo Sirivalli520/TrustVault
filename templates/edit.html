@@ -1,0 +1,5 @@
+{% extends "base.html" %}{% block title %}Edit document — TrustVault{% endblock %}
+{% block content %}<section class="panel" style="max-width:650px"><h1>Edit document details</h1><p class="muted">This changes metadata, not the stored file contents.</p>
+<form method="post"><label>Display filename</label><input name="filename" value="{{ doc['filename'] }}" required maxlength="255">
+<label>Description</label><textarea name="description" rows="3" maxlength="500">{{ doc['description'] }}</textarea>
+<label>Category</label><input name="category" value="{{ doc['category'] }}" maxlength="80"><p><button>Save changes</button></p></form></section>{% endblock %}
