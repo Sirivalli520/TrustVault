@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}TrustVault{% endblock %}</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0d111b;--panel:#151d2c;--line:#2b3850;--text:#e8eef8;--muted:#a9b7cc;--accent:#8bb7ff;--danger:#ff9a9a}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,sans-serif}
+    a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:1050px;margin:auto;padding:24px}
+    nav{display:flex;gap:16px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:14px 24px;background:#101725}
+    nav .links{display:flex;gap:14px;align-items:center;flex-wrap:wrap}.brand{font-weight:800;color:white;font-size:1.25rem}
+    .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:18px 0}
+    h1,h2,h3{line-height:1.2}h1{font-size:2rem}label{display:block;margin:12px 0 5px;color:var(--muted)}
+    input,select,textarea{width:100%;padding:11px;border-radius:8px;border:1px solid var(--line);background:#0e1522;color:var(--text)}
+    button,.button{display:inline-block;background:#3569b7;color:white;border:0;padding:10px 15px;border-radius:8px;cursor:pointer;font:inherit}
+    button.secondary,.button.secondary{background:#26354c}button.danger{background:#8d353b}.inline{display:inline}.muted{color:var(--muted)}.small{font-size:.9rem}
+    .flash{padding:11px 14px;border-radius:8px;margin:10px 0;background:#24344a}.flash.error{border:1px solid #8d353b}.flash.success{border:1px solid #2c795b}
+    table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-bottom:1px solid var(--line);vertical-align:top}th{color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}.actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+    .actions form{display:inline}.tag{display:inline-block;padding:2px 8px;border:1px solid var(--line);border-radius:99px;color:var(--muted);font-size:.82rem}
+    footer{border-top:1px solid var(--line);margin-top:40px;padding:18px 24px;color:var(--muted);font-size:.9rem}
+    @media(max-width:650px){nav{align-items:flex-start;flex-direction:column}.wrap{padding:16px}table{font-size:.9rem;display:block;overflow-x:auto}}
+  </style>
+</head>
+<body>
+<nav><a class="brand" href="{{ url_for('index') }}">🔐 TrustVault</a><div class="links">
+{% if g.user %}<span class="muted">Signed in as <strong>{{ g.user['username'] }}</strong> · {{ g.user['role'] }}</span><a href="{{ url_for('documents') }}">Documents</a><a href="{{ url_for('upload') }}">Upload</a>{% if g.user['role']=='admin' %}<a href="{{ url_for('admin_dashboard') }}">Admin</a>{% endif %}<form class="inline" method="post" action="{{ url_for('logout') }}"><button class="secondary">Log out</button></form>{% else %}<a href="{{ url_for('login') }}">Log in</a><a href="{{ url_for('register') }}">Create account</a>{% endif %}
+</div></nav>
+<main class="wrap">
+{% for category, message in get_flashed_messages(with_categories=true) %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}
+{% block content %}{% endblock %}
+</main><footer>TrustVault · Demo project · Do not upload real confidential documents to an unreviewed deployment.</footer>
+</body></html>
