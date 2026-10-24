@@ -1,0 +1,6 @@
+{% extends "base.html" %}{% block title %}Upload — TrustVault{% endblock %}
+{% block content %}<section class="panel" style="max-width:650px"><h1>Upload document</h1><p class="muted">Maximum 10 MB by default. Allowed: PDF, TXT, DOCX, XLSX, PNG, JPG/JPEG, CSV.</p>
+<form method="post" enctype="multipart/form-data"><label>File</label><input type="file" name="file" required>
+<label>Description</label><textarea name="description" rows="3" maxlength="500"></textarea>
+<label>Category</label><input name="category" maxlength="80" placeholder="General">
+<p><button>Upload document</button></p></form></section>{% endblock %}

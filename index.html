@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block title %}TrustVault — secure document sharing{% endblock %}
+{% block content %}
+<section class="panel"><span class="tag">Secure document workspace</span><h1>Share documents. Keep control.</h1>
+<p class="muted">A document-sharing demo with named-user permissions, separate user roles, and an audit trail for important actions.</p>
+<div class="actions"><a class="button" href="{{ url_for('register') }}">Create account</a><a class="button secondary" href="{{ url_for('login') }}">Log in</a></div></section>
+<div class="grid"><section class="panel"><h3>Document-level access</h3><p>Every document has its own explicit grants. Folder membership does not automatically reveal other documents.</p></section>
+<section class="panel"><h3>Audit events</h3><p>Record uploads, downloads, metadata changes, deletions, and permission changes.</p></section>
+<section class="panel"><h3>Built for review</h3><p>Includes tests, a threat model, AI prompt log, and honest setup and deployment notes.</p></section></div>
+{% endblock %}
